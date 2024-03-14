@@ -16,12 +16,12 @@
 
 ## Installation
 
-cp .env.example .env
-docker-compose up -d
-docker-compose exec -it app bash
-composer update
-php artisan key:generate
-php artisan migrate --seed
+* cp .env.example .env
+* docker-compose up -d
+* docker-compose exec -it laravel bash
+* composer update
+* php artisan key:generate
+* php artisan migrate --seed
 
 
 

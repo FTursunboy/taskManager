@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\LoginDTO;
 use App\DTO\TaskDTO;
 use App\DTO\UserDTO;
 use App\Http\Requests\LoginRequest;
@@ -13,6 +14,7 @@ use App\Models\Task;
 use App\Services\AuthService;
 use App\Services\TaskService;
 use App\Traits\ApiResponse;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -27,7 +29,11 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $user = $this->service->login($request->login);
+        $user = $this->service->login(LoginDTO::fromRequest($request));
+
+        if (!$user) {
+            throw ValidationException::withMessages(['message' => __('auth.failed')]);
+        }
 
         return response()->json([
             'user' => new UserResource($user),

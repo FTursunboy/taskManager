@@ -4,8 +4,8 @@ namespace App\Enums;
 
 enum Statuses: string
 {
-    case Pending = 'В ожидании';
-    case Accepted = 'Принят';
+    case Created = 'Создано';
+    case InProgress = 'В процессе';
     case Finished = 'Готов';
 }
 

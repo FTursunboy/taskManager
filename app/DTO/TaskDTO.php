@@ -7,7 +7,7 @@ use App\Http\Requests\TaskRequest;
 class TaskDTO
 {
 
-    public function __construct(public string $name, public string $status, public string $date, public string $description, public string $user_id)
+    public function __construct(public string $name, public string $date, public string $description)
     {
     }
 
@@ -15,10 +15,8 @@ class TaskDTO
     {
         return new static(
             $request->get('name'),
-            $request->get('status'),
             $request->get('date'),
-            $request->get('description'),
-            $request->get('user_id')
+            $request->get('description')
         );
     }
 

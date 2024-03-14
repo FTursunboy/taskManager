@@ -12,7 +12,7 @@ class TaskRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:5', 'max:25'],
-            'date' => ['required', 'date_format:d-m-Y'],
+            'date' => ['required', 'date_format:d.m.Y'],
             'description' => ['nullable']
         ];
     }

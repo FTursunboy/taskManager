@@ -12,8 +12,8 @@ class UpdateTaskRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:5', 'max:25'],
-            'status' => [Rule::enum(Statuses::class)],
-            'date' => ['required', 'date_format:d-m-Y'],
+            'status' => ['required', Rule::enum(Statuses::class)],
+            'date' => ['required', 'date_format:d.m.Y'],
             'description' => ['nullable']
         ];
     }

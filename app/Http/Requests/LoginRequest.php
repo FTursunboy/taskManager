@@ -12,7 +12,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'login' => ['required', 'min:3', 'max:25', 'exists:users,login'],
-            'password' => ['required', 'current_password:api']
+            'password' => ['required']
         ];
     }
 

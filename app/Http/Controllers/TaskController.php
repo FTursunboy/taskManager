@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DTO\TaskDTO;
+use App\DTO\UpdateTaskDTO;
 use App\Filters\TaskFilter;
 use App\Http\Requests\TaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use App\Services\TaskService;
@@ -37,11 +39,11 @@ class TaskController extends Controller
         return new TaskResource($task);
     }
 
-    public function update(TaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
         $this->authorize('update', $task);
 
-        $this->success($this->service->update($task, TaskDTO::fromRequest($request)));
+        $this->success($this->service->update($task, UpdateTaskDTO::fromRequest($request)));
 
         return new TaskResource($task);
     }
@@ -50,12 +52,11 @@ class TaskController extends Controller
     {
         $this->authorize('delete', $task);
 
-        return $this->deleted($this->service->delete($task));
-
+        return $this->success($this->service->delete($task));
     }
 
     public function filter(TaskFilter $filters)
     {
-        return $this->success(Task::filter($filters))->get();
+        return $this->paginate(Task::filter($filters)->paginate(10));
     }
 }

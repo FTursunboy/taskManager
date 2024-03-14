@@ -2,7 +2,7 @@
 
 namespace App\Filters;
 
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 abstract class QueryFilter
@@ -22,7 +22,7 @@ abstract class QueryFilter
 
         foreach ($this->filters() as $name => $value) {
             if (method_exists($this, $name)) {
-                call_user_func([$this, $name], array_filter([$value]));
+                call_user_func([$this, $name], $value);
             }
         }
 

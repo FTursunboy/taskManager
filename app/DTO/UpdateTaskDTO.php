@@ -3,6 +3,7 @@
 namespace App\DTO;
 
 use App\Http\Requests\TaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 
 class UpdateTaskDTO
 {
@@ -11,7 +12,7 @@ class UpdateTaskDTO
     {
     }
 
-    public static function fromRequest(TaskRequest $request) :self
+    public static function fromRequest(UpdateTaskRequest $request) :self
     {
         return new static(
             $request->get('name'),
